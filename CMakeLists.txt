@@ -2,9 +2,12 @@ cmake_minimum_required(VERSION 3.6)
 project(nginx)
 
 #set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "-pipe -Wall -Wextra -Wpointer-arith -Wconditional-uninitialized -Wno-unused-parameter -Wno-deprecated-declarations")
+set(CMAKE_C_FLAGS "-pipe -Wall -Wextra -Wpointer-arith -Wconditional-uninitialized -Wno-unused-parameter -Wno-deprecated-declarations ")
+set(CMAKE_LINK_PATH "/usr/local/Cellar/" ${CMAKE_LINK_PATH})
 
 #add_definitions(-DNGX_HTTP_UPSYNC_MODULE=0)
+
+link_directories(${CMAKE_LINK_PATH}/pcre)
 
 include_directories(src/auto
         src/core
@@ -12,7 +15,8 @@ include_directories(src/auto
         src/http
         src/http/modules
         src/os
-        src/os/unix)
+        src/os/unix
+		/usr/local/Cellar/pcre/8.42/include)
 
 set(SOURCE_FILES 
         src/core/nginx.c
